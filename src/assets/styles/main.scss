@@ -1,0 +1,87 @@
+html, body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+.app-root {
+    display: flex;
+    flex-direction: column;
+    width: 100vh;
+    height: 100vh;
+    max-width:  32rem;
+    margin: 0 auto;
+}
+
+.messages {
+    flex: 1 1 100%;
+    overflow-y: scroll;
+    color : gray;
+    border:  1px solid;
+
+    list-style: none;
+    margin: 0;
+    padding: .625rem;
+
+    li {
+        border-radius: 4px;
+        padding: .25rem 1rem;
+        background-color: #6fffda;
+        margin-bottom: .5rem;
+        margin-right: 2rem;
+    }
+
+    .is-user {
+        text-align: right;
+        margin-left: 2rem;
+        margin-right: 0;
+        background-color: #f0ffad;
+
+    }
+}
+
+.chat-form {
+    flex: 0 0 auto;
+    padding:  .625rem 0;
+
+    input {
+        display: block;
+        width: 100%;
+        padding: .625rem;
+        height: 2rem;
+    }
+
+    textarea {
+        width: 100%;
+        height: 3rem;
+        resize: none;
+
+        font-size: .825rem;
+    }
+
+    button {
+        width: 100%;
+        padding: .25rem;
+        margin: 0;
+
+        border: 0;
+        box-shadow: none;
+
+        background-color: lightseagreen;
+
+        color: #fff;
+        font-size:  1.5rem;
+
+        cursor: pointer;
+
+        &:hover {
+            background-color: darkseagreen;
+        }
+    }
+}
