@@ -39,4 +39,5 @@ function addMessage(elem, message, user, isYou = false) {
     let classes = isYou ? 'is-user' : 'is-bot';
     newMessage.classList.add(classes);
     elem.appendChild(newMessage);
+    elem.scrollTop = elem.scrollHeight;
 }

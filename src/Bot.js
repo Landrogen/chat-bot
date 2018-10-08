@@ -11,7 +11,7 @@ export default class Bot {
         this.DB = new DataBase();
         this.status = WAIT_PHRASE;
         this.lastPhrase = '';
-        this.sendMessage(`Привет всем в этом чатике! меня зовут ${name}`);
+        this.sendMessage(`Привет всем в этом чатике! меня зовут ${this.name}`);
     }
 
     setSubscribe() {
@@ -29,7 +29,7 @@ export default class Bot {
                     this.sendMessage(`${data.result.answer}`);
                 } else {
                     this.sendMessage(`Возможно вы имели ввиду: ${data.result.key}`);
-                    this.lastPhrase = phrase;
+                    this.lastPhrase = data.result.key;
                     this.status = WAIT_CONFIRM;
                 }
             }).catch(error => {
@@ -41,14 +41,15 @@ export default class Bot {
                 }
             });
         } else if (this.status === WAIT_CONFIRM) {
-            if (phrase.toLowerCase() === 'да')  {
+            if (phrase.toLowerCase() === 'да') {
+                this.status = WAIT_PHRASE;
                 this.acceptPhrase(this.lastPhrase);
             } else {
                 this.requestRightAnswer();
             }
         } else {
             // Добавить ответ в словарь
-            this.DB.addAnswer( this.lastPhrase, phrase );
+            this.DB.addAnswer(this.lastPhrase, phrase);
             this.sendMessage(`Спасибо! Буду знать`);
             this.status = WAIT_PHRASE;
         }
